@@ -36,8 +36,11 @@ customiseGridBtn.style.height = '100px';
 mainContainer.appendChild(customiseGridBtn);
 
 customiseGridBtn.addEventListener('click', () => {
-    let gridSize = prompt('Enter Square Number!');
-    customiseGrid(gridSize);
+    let gridSize = prompt('Enter number of squares! < 100');
+    if (gridSize <= 100) {
+        customiseGrid(gridSize);
+    } else customiseGrid(16);
+
 });
 
 //Remove old grid and Add new grid
