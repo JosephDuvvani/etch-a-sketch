@@ -1,0 +1,11 @@
+.row {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.square {
+    min-width: 50px;
+    min-height: 50px;
+    border: 1px solid gold;
+}
