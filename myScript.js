@@ -18,25 +18,50 @@ for (let i = 1; i <= 16; i++) {
         row.appendChild(square);
     }
     gridContainer.appendChild(row);
+    updateGrid(16);
 }
 
-const squareList = document.querySelectorAll('.square');
+let squareList = document.querySelectorAll('.square');
+setGreyColor(squareList);
 
-
-for (let i = 0; i < squareList.length; i++) {
-    let opacity = 0;
-    squareList[i].addEventListener('mouseenter', () => {
-        if (opacity < 100) opacity += 10;
-        squareList[i].style.backgroundColor = `rgb(0 0 0 / ${opacity}%)`;
-    });
+//Color Setting Functions
+function setGreyColor(squareList) {
+    for (let i = 0; i < squareList.length; i++) {
+        let opacity = 0;
+        squareList[i].addEventListener('mouseenter', () => {
+            if (opacity < 100) opacity += 10;
+            squareList[i].style.backgroundColor = `rgb(0 0 0 / ${opacity}%)`;
+        });
+    }
 }
 
-//Customising Grid Button
+function setRGBColor(squareList) {
+    for (let i = 0; i < squareList.length; i++) {
+        let red = Math.floor(Math.random() * 255);
+        let green = Math.floor(Math.random() * 255);
+        let blue = Math.floor(Math.random() * 255);
+
+        let opacity = 0;
+
+        squareList[i].addEventListener('mouseenter', () => {
+            if (opacity < 100) opacity += 10;
+            squareList[i].style.backgroundColor = `rgb(${red} ${green} ${blue} / ${opacity}%)`;
+        });
+    }
+}
+
+
+//Buttons
+const buttons = document.createElement('div');
+buttons.classList.add('buttons');
+mainContainer.appendChild(buttons);
+
 const customiseGridBtn = document.createElement('button');
+customiseGridBtn.classList.add('btn');
 customiseGridBtn.id = 'custom-grid';
 customiseGridBtn.textContent = 'Custom Grid';
-customiseGridBtn.style.height = '100px';
-mainContainer.appendChild(customiseGridBtn);
+customiseGridBtn.style.height = 'auto';
+buttons.appendChild(customiseGridBtn);
 
 customiseGridBtn.addEventListener('click', () => {
     let gridSize = prompt('Enter number of squares! < 100');
@@ -46,12 +71,37 @@ customiseGridBtn.addEventListener('click', () => {
 
 });
 
+let currentColor = 'grey';
+
+const greyColorBtn = document.createElement('button');
+greyColorBtn.classList.add('btn');
+greyColorBtn.id = 'greyBtn';
+greyColorBtn.textContent = 'Grey';
+buttons.appendChild(greyColorBtn);
+
+greyColorBtn.addEventListener('click', () => {
+    setGreyColor(squareList);
+    currentColor = 'grey';
+});
+
+const rgbColorBtn = document.createElement('button');
+rgbColorBtn.classList.add('btn');
+rgbColorBtn.id = 'rgbBtn';
+rgbColorBtn.textContent = 'RGB';
+buttons.appendChild(rgbColorBtn);
+
+rgbColorBtn.addEventListener('click', () => {
+    setRGBColor(squareList);
+    currentColor = 'rgb';
+});
+
+
 //Remove old grid and Add new grid
 function customiseGrid(size) {
-    let oldGrid = document.querySelectorAll('.row');
+    let oldGridRow = document.querySelectorAll('.row');
 
-    for (let i = 0; i < oldGrid.length; i++) {
-        oldGrid[i].remove();
+    for (let i = 0; i < oldGridRow.length; i++) {
+        oldGridRow[i].remove();
     }
 
     for (let i = 1; i <= size; i++) {
@@ -73,19 +123,12 @@ function customiseGrid(size) {
 
 //Update size of the square to fit
 function updateGrid(squares) {
-    let squareWidth = 800 / squares;
+    let squareWidth = 600 / squares;
     let newSquareList = document.querySelectorAll('.square');
 
     for (let i = 0; i < newSquareList.length; i++) {
         newSquareList[i].style.width = `${squareWidth}px`;
         newSquareList[i].style.height = `${squareWidth}px`;
     }
-
-    for (let i = 0; i < newSquareList.length; i++) {
-        let opacicity = 0;
-        newSquareList[i].addEventListener('mouseenter', () => {
-            if (opacicity < 100) opacicity += 10;
-            newSquareList[i].style.backgroundColor = `rgb(0 0 0 / ${opacicity}%)`;
-        });
-    }
+    setGreyColor(newSquareList);
 }

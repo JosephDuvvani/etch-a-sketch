@@ -2,12 +2,13 @@
     display: flex;
     justify-content: center;
     align-items: center;
+    gap: 30px;
 }
 
 .grid-container {
     border: 2px solid green;
-    width: 800px;
-    height: 800px;
+    width: 600px;
+    height: 600px;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -25,4 +26,17 @@
     height: 50px;
     border: 1px solid gold;
     box-sizing: border-box;
+}
+
+.buttons {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.btn {
+    border-style: none;
+    padding: 8px;
+    background-color: bisque;
+    border-radius: 10px;
 }
