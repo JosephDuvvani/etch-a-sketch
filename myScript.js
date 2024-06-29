@@ -22,13 +22,16 @@ for (let i = 1; i <= 16; i++) {
 
 const squareList = document.querySelectorAll('.square');
 
+
 for (let i = 0; i < squareList.length; i++) {
+    let opacity = 0;
     squareList[i].addEventListener('mouseenter', () => {
-        squareList[i].style.backgroundColor = 'red';
+        if (opacity < 100) opacity += 10;
+        squareList[i].style.backgroundColor = `rgb(0 0 0 / ${opacity}%)`;
     });
 }
 
-//Customising Button
+//Customising Grid Button
 const customiseGridBtn = document.createElement('button');
 customiseGridBtn.id = 'custom-grid';
 customiseGridBtn.textContent = 'Custom Grid';
@@ -79,8 +82,10 @@ function updateGrid(squares) {
     }
 
     for (let i = 0; i < newSquareList.length; i++) {
+        let opacicity = 0;
         newSquareList[i].addEventListener('mouseenter', () => {
-            newSquareList[i].style.backgroundColor = 'red';
+            if (opacicity < 100) opacicity += 10;
+            newSquareList[i].style.backgroundColor = `rgb(0 0 0 / ${opacicity}%)`;
         });
     }
 }
