@@ -2,9 +2,22 @@ const mainContainer = document.createElement('div');
 mainContainer.classList.add('main-container');
 document.body.appendChild(mainContainer);
 
+const padContainer = document.createElement('div');
+padContainer.classList.add('sketch-pad');
+mainContainer.appendChild(padContainer);
+
 const gridContainer = document.createElement('div');
 gridContainer.classList.add('grid-container');
-mainContainer.appendChild(gridContainer);
+padContainer.appendChild(gridContainer);
+
+const header = document.createElement('h1');
+header.id = 'title';
+header.textContent = 'Etch-a-Sketch';
+mainContainer.appendChild(header);
+mainContainer.insertBefore(header, padContainer);
+
+let currentColor = 'grey';
+let gridSize = 16;
 
 for (let i = 1; i <= 16; i++) {
     let row = document.createElement('div');
@@ -54,7 +67,7 @@ function setRGBColor(squareList) {
 //Buttons
 const buttons = document.createElement('div');
 buttons.classList.add('buttons');
-mainContainer.appendChild(buttons);
+padContainer.appendChild(buttons);
 
 const customiseGridBtn = document.createElement('button');
 customiseGridBtn.classList.add('btn');
@@ -64,14 +77,14 @@ customiseGridBtn.style.height = 'auto';
 buttons.appendChild(customiseGridBtn);
 
 customiseGridBtn.addEventListener('click', () => {
-    let gridSize = prompt('Enter number of squares! < 100');
-    if (gridSize <= 100) {
+    let newgridSize = prompt('Enter number of squares! < 100');
+    if (newgridSize <= 100) {
         customiseGrid(gridSize);
-    } else customiseGrid(16);
+        gridSize = newgridSize;
+    } else customiseGrid(gridSize);
 
 });
 
-let currentColor = 'grey';
 
 const greyColorBtn = document.createElement('button');
 greyColorBtn.classList.add('btn');
@@ -82,6 +95,7 @@ buttons.appendChild(greyColorBtn);
 greyColorBtn.addEventListener('click', () => {
     setGreyColor(squareList);
     currentColor = 'grey';
+    updateGrid(gridSize);
 });
 
 const rgbColorBtn = document.createElement('button');
@@ -93,6 +107,7 @@ buttons.appendChild(rgbColorBtn);
 rgbColorBtn.addEventListener('click', () => {
     setRGBColor(squareList);
     currentColor = 'rgb';
+    updateGrid(gridSize);
 });
 
 
@@ -130,5 +145,12 @@ function updateGrid(squares) {
         newSquareList[i].style.width = `${squareWidth}px`;
         newSquareList[i].style.height = `${squareWidth}px`;
     }
-    setGreyColor(newSquareList);
+    switch (currentColor) {
+        case 'grey':
+            setGreyColor(newSquareList);
+            break;
+        case 'rgb':
+            setRGBColor(newSquareList);
+            break;
+    }
 }
