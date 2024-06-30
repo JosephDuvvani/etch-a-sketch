@@ -146,15 +146,14 @@ colorsLabel.style.textAlign = 'center';
 buttons.appendChild(colorsLabel);
 buttons.insertBefore(colorsLabel, greyColorBtn);
 
-const btnHover = document.querySelectorAll('.btn');
-for (let i = 0; i < btnHover.length; i++) {
-    btnHover[i].addEventListener('mouseenter', () => {
-        btnHover[i].style.backgroundColor = 'lightgrey';
-    })
-
-    btnHover[i].addEventListener('mouseleave', () => {
-        btnHover[i].style.backgroundColor = 'rgb(61, 0, 48)';
-    })
+const btnList = document.querySelectorAll('.btn');
+for (let i = 0; i < btnList.length; i++) {
+    btnList[i].addEventListener('mouseenter', () => {
+        btnList[i].style.backgroundColor = 'lightgrey';
+    });
+    btnList[i].addEventListener('mouseleave', () => {
+        btnList[i].style.backgroundColor = 'rgb(61, 0, 48)';
+    });
 }
 
 
