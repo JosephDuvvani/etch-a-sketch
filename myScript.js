@@ -63,6 +63,14 @@ function setRGBColor(squareList) {
     }
 }
 
+function setErase(squareList) {
+    for (let i = 0; i < squareList.length; i++) {
+        squareList[i].addEventListener('mouseenter', () => {
+            squareList[i].style.backgroundColor = `white`;
+        });
+    }
+}
+
 
 //Buttons
 const buttons = document.createElement('div');
@@ -117,11 +125,9 @@ buttons.appendChild(eraseBtn);
 buttons.insertBefore(eraseBtn, greyColorBtn);
 
 eraseBtn.addEventListener('click', () => {
-    for (let i = 0; i < squareList.length; i++) {
-        squareList[i].addEventListener('mouseenter', () => {
-            squareList[i].style.backgroundColor = 'white';
-        })
-    }
+    setErase(squareList);
+    currentColor = 'erase';
+    updateGrid(gridSize);
 });
 
 const wipeBtn = document.createElement('button');
@@ -179,6 +185,7 @@ function customiseGrid(size) {
         gridContainer.appendChild(row);
     }
 
+    currentColor = 'grey';
     updateGrid(size);
 }
 
@@ -197,6 +204,9 @@ function updateGrid(squares) {
             break;
         case 'rgb':
             setRGBColor(newSquareList);
+            break;
+        case 'erase':
+            setErase(newSquareList);
             break;
     }
 }
