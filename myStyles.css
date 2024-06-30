@@ -6,11 +6,14 @@ body {
 
 h1 {
     font-family: 'Courier New', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
-    font-size: 50px;
-    background: linear-gradient(to right, white, yellow, purple);
+    font-size: 40px;
+    background: linear-gradient(to right, white, rgb(255, 121, 11), purple);
     -webkit-text-fill-color: transparent;
     -webkit-background-clip: text;
-    border-bottom: 2px dotted rgba(216, 195, 3, 0.884);
+    background-clip: text;
+    border: 6px inset rgba(255, 172, 134, 0.884);
+    padding: 10px;
+    border-radius: 10px 50px 10px 40px;
 }
 
 .sketch-pad {
@@ -22,6 +25,7 @@ h1 {
     box-shadow: 0 0 50px black inset;
     padding: 70px 20px 40px 50px;
     border-radius: 10px 50px 30px 15px;
+    box-shadow: 0 0 10px rgb(255, 73, 1);
 }
 
 .main-container {
@@ -29,7 +33,7 @@ h1 {
     flex-direction: column;
     justify-content: flex-start;
     align-items: center;
-    background: linear-gradient(-70deg, #333, #333 50%, #eee 75%, #333 75%);
+    background: linear-gradient(-70deg, #3a2517, #333 50%, #eee 75%, #3a2517 75%);
     box-shadow: 0 0 5px silver inset;
     height: 100vh;
     width: 100%;
@@ -77,4 +81,8 @@ h1 {
     border-radius: 10px;
     box-shadow: 0px -5px 5px lightsalmon;
     padding: 12px;
+}
+
+/*#grey-btn {
+    margin-top: 50px;
 }

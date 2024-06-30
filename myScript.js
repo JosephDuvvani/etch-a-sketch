@@ -79,16 +79,15 @@ buttons.appendChild(customiseGridBtn);
 customiseGridBtn.addEventListener('click', () => {
     let newgridSize = prompt('Enter number of squares! < 100');
     if (newgridSize <= 100) {
-        customiseGrid(gridSize);
+        customiseGrid(newgridSize);
         gridSize = newgridSize;
     } else customiseGrid(gridSize);
 
 });
 
-
 const greyColorBtn = document.createElement('button');
 greyColorBtn.classList.add('btn');
-greyColorBtn.id = 'greyBtn';
+greyColorBtn.id = 'grey-btn'
 greyColorBtn.textContent = 'Grey';
 buttons.appendChild(greyColorBtn);
 
@@ -100,7 +99,7 @@ greyColorBtn.addEventListener('click', () => {
 
 const rgbColorBtn = document.createElement('button');
 rgbColorBtn.classList.add('btn');
-rgbColorBtn.id = 'rgbBtn';
+rgbColorBtn.id = 'rgb-btn';
 rgbColorBtn.textContent = 'RGB';
 buttons.appendChild(rgbColorBtn);
 
@@ -109,6 +108,43 @@ rgbColorBtn.addEventListener('click', () => {
     currentColor = 'rgb';
     updateGrid(gridSize);
 });
+
+const eraseBtn = document.createElement('button');
+eraseBtn.classList.add('btn');
+eraseBtn.id = 'erase-btn';
+eraseBtn.textContent = 'Erase';
+buttons.appendChild(eraseBtn);
+buttons.insertBefore(eraseBtn, greyColorBtn);
+
+eraseBtn.addEventListener('click', () => {
+    for (let i = 0; i < squareList.length; i++) {
+        squareList[i].addEventListener('mouseenter', () => {
+            squareList[i].style.backgroundColor = 'white';
+        })
+    }
+});
+
+const wipeBtn = document.createElement('button');
+wipeBtn.classList.add('btn');
+wipeBtn.id = 'wipe-btn';
+wipeBtn.textContent = 'Wipe';
+buttons.appendChild(wipeBtn);
+buttons.insertBefore(wipeBtn, greyColorBtn);
+
+wipeBtn.addEventListener('click', () => {
+    customiseGrid(gridSize);
+});
+
+const colorsLabel = document.createElement('p');
+colorsLabel.classList.add('btn-label');
+colorsLabel.textContent = 'Pick-a-Color';
+colorsLabel.style.color = 'white';
+colorsLabel.style.fontSize = '22px';
+colorsLabel.style.paddingBottom = '0px';
+colorsLabel.style.borderBlockEnd = '3px solid white';
+colorsLabel.style.textAlign = 'center';
+buttons.appendChild(colorsLabel);
+buttons.insertBefore(colorsLabel, greyColorBtn);
 
 
 //Remove old grid and Add new grid
